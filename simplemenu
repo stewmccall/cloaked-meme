@@ -1,0 +1,56 @@
+using System;
+
+//  This is a modified version of a simple menu program found on page 61 of Introduction to C#
+//  The original had no check to see if the menu option was within the range of those listed
+//  and no error message if the user made a choice outside the range.
+//  This was added into program to reflect the need to control.
+//  a continuous loop is set up to keep the routine running until the word end is entered at the end of the routine
+//  rather than just 'enter' to end.
+//  comments documenting the flow program were added that were not present in the original to explain how it words.
+
+namespace SimpleMenu
+{
+	class MainClass
+	{
+		public static void Main (string[] args)
+		{
+			string loopround = " ";																	// define loop control variable and set to SPACE
+
+			while (loopround != "END") {															// start the loop set to end only if END in caps is typed
+				Console.WriteLine ("Please Select a Beverage");										// display menu
+				Console.WriteLine ();
+				Console.WriteLine ("[1] Coffee");
+				Console.WriteLine ("[2] Tea");
+				Console.WriteLine ("[3] Hot Chocolate");
+				Console.WriteLine ();
+				Console.WriteLine ("Please Made a Selection 1,2 or 3: ");
+				int BevChoice = int.Parse (Console.ReadLine ());									// define choice variable and parse entered choice
+
+				if (BevChoice >= 1 & BevChoice <= 3) {												// verify that the choice is within the range of options in menu
+					Console.Write ("Thank you, Here is your ");							
+
+					switch (BevChoice) {															// select an action based on the choice made to display the 
+					case 1:																			// beverage type correctly for the option that was selected
+						Console.WriteLine ("coffee.");
+						break;
+
+					case 2:
+						Console.WriteLine ("tea.");
+						break;
+
+					case 3:																			// note that 'default:' was not used as this would require the
+						Console.WriteLine ("Hot Chocolate.");										// repeat of the Thank you and Enjoy text sections in all cases
+						break;																		// rather than using them just once with a boolean if then else
+					}																				// to do the same thing. Making for a smaller overall object code
+					Console.WriteLine ();
+					Console.WriteLine ("Enjoy your Beverage, Thank you!");							// display a nice message after the Thank you message
+				
+				} else 
+					Console.WriteLine ("Error - you have not picked a valid option!");			// the option was outside the range available show error
+				Console.WriteLine ();
+				Console.Write ("enter END to finish with this task or press enter to do again: ");	// ask for either enter or the word END
+				loopround = Console.ReadLine ();													// then modify loopround variable from keyboard entry
+			}
+		}
+	}
+}
